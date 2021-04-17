@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>      
+	<meta charset="utf-8">
+	<title>mercores</title>
+</head>
+
+<body>
+	<h2>Datos da AEMT</h2>
+		
+	<div id="contenedor">
+		<button type="button" onclick="cargaDatos()">Mostrar Datos</button>
+	</div>
+	<table id="proba"></table>
+			
+   		<script>
+			function cargaDatos() {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						DibujarContenido(this.responseText);
+					}
+				};
+				xhttp.open("GET", "D:/git/jsonabril.json", true);
+				xhttp.send();
+			}
+
+			function DibujarContenido(datos) {		
+                //datos en formato JSON
+				var objeto = JSON.parse(datos);
+
+				var html="";	
+                //recorreomos el objeto y creamos el html necesario
+
+				for (i = 0; i < objeto.length; i++) {
+					html=html + "<tr>";
+						html=html + "<th>DATA</th>";
+						html=html + "<th>COD. Est.</th>";
+						html=html + "<th>NOME</th>";
+						html=html + "<th>provincia</th>";
+						html=html + "<th>altitud</th>";
+						html=html + "<th>tmed</th>";
+					html=html + "</tr>";
+					html=html + "<tr>";	
+						html=html + "<td>" + objeto[i].fecha + "</td>";
+						html=html + "<td>" + objeto[i].indicativo + "</td>";
+						html=html + "<td>" + objeto[i].nombre + "</td>";
+						html=html + "<td>" + objeto[i].provincia + "</td>";
+						html=html + "<td>" + objeto[i].altitud + "</td>";
+						html=html + "<td>" + objeto[i].tmed + "</td>";
+					html=html + "</tr>";
+				}
+
+				document.getElementById("proba").innerHTML = table;
+			}
+					
+		</script>
+	</body>
+</html>
