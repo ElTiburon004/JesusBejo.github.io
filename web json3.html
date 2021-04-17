@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!-- 
+// https://www.youtube.com/watch?v=wZW4dhxRu-k//       
+ -->
+
+ <HTML lang="es">
+
+<head>
+    <meta charset="UTF-8">
+  
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8887/css/estiloTablaJson.css"/>
+   
+
+</head>
+<style>
+
+  .left {
+  float: left;
+  width: 10%;
+} 
+
+</style>
+
+<body>
+    <header>
+        <a href="https://www.json.org/json-es.html"><image class="left" src="http://127.0.0.1:8887/logoJSON.jpg" alt="Logo_JSON"/></a>
+        
+        <h3>TAREA PR01 JSON EXERCICIO 1</h3>
+    </header>
+    <br>
+    <hr>
+
+    <section>
+        <nav>
+          <p>Paxina web de lectura de datos JSON</p>
+           
+        </nav>
+
+      </section>  
+    <div class="container">
+        <button class="button" onclick = "ajax_get_json()">Cargar datos JSON</button>
+<br>
+<br>
+<br>
+        <div class="section">
+          
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Codigo Estación</th>
+                        <th>Lugar Estación</th>
+                        <th>Provincia</th>
+                        <th>Altitud</th>
+                        <th>Temperatura Media</th>
+                        <th>Precipitaciones</th>
+                        <th>Temperatura mínima</th>
+                        <th>Hora Temperatura Mínima</th>
+                        <th>Temperatura Máxima</th>
+                        <th>Hora Temperatura Máxima</th>
+                        <th>Dir</th>
+                        <th>Velocida Media</th>
+                        <th>Racha</th>
+                        <th>Hora Racha</th>        
+                     </tr>
+                </thead>
+                <tbody id="res">
+                    
+                </tbody>
+            </table>
+        </div>
+
+<script type="text/javascript">
+var resultado = document.getElementById("info");
+
+function ajax_get_json()
+{
+    var xmlhttp;
+    if(window.XMLHttpRequest){
+        xmlhttp = new XMLHttpRequest();
+        }else{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+                var datos = JSON.parse(xmlhttp.responseText);
+                if(resultado.innerHTML === ""){
+                for(var i in datos){
+                    resultado.innerHTML += i + ": " + datos[i] + "<br/>"
+           }
+        }
+        }
+        } 
+xmlhttp.open("GET" ,"http://127.0.0.1:8887/abril.jason", true);
+xmlhttp.send();
+  }
+ 
+</script>
+
+</div>
+<footer>
+    <p>Jesús Bejo Santiago <br> Desenvolvemento de Aplicacións Multiplataforma <br> Linguaxes de Marcas e Sistemas de Xestión de Información</p>
+  </footer>
+
+
+
+
+
+
+
+
+
+
+</body>
+<!-- 
+   ___                     ______      _       _    _      _     
+  |_  |                    | ___ \    (_)     | |  | |    | |    
+    | | ___  ___ _   _ ___ | |_/ / ___ _  ___ | |  | | ___| |__  
+    | |/ _ \/ __| | | / __|| ___ \/ _ \ |/ _ \| |/\| |/ _ \ '_ \ 
+/\__/ /  __/\__ \ |_| \__ \| |_/ /  __/ | (_) \  /\  /  __/ |_) |
+\____/ \___||___/\__,_|___/\____/ \___| |\___/ \/  \/ \___|_.__/ 
+                                     _/ |                        
+                                    |__/                         
+ -->
+</HTML>
